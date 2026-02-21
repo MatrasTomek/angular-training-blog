@@ -1,0 +1,18 @@
+<mat-toolbar color="primary">
+  <div class="toolbar-content">
+    <div class="toolbar-left">
+      <span>BLOG</span>
+    </div>
+    <div class="toolbar-right">
+      <span>{{ authService.UserInfo }}</span>
+      <button mat-button color="accent" (click)="logout()">LogOut</button>
+    </div>
+  </div>
+</mat-toolbar>
+<mat-toolbar>
+  <div>
+    <button mat-button routerLink="/info">Info</button>
+    <button mat-button routerLink="/blog-page">Blog</button>
+    <button mat-button routerLink="/contact">Kontakt</button>
+  </div>
+</mat-toolbar>
