@@ -1,1 +1,24 @@
-<p>blog-page works!</p>
+<form [formGroup]="blogForm" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="fill">
+    <mat-label>Post</mat-label>
+    <input matInput formControlName="text" placeholder="Post" />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Data</mat-label>
+    <input
+      matInput
+      formControlName="publicationDate"
+      placeholder="Data wpisu"
+    />
+  </mat-form-field>
+
+  <button
+    mat-raised-button
+    color="primary"
+    type="submit"
+    [disabled]="blogForm.invalid"
+  >
+    Wyślij
+  </button>
+</form>
