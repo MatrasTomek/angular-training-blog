@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { LoginInterface } from '../interfaces/login-interface';
+import { LoginInterface } from '../interfaces/login.interface';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { ResponseAuthInterface } from '../interfaces/response-auth.interface';
 

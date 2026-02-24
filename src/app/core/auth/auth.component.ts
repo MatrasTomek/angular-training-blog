@@ -1,10 +1,10 @@
-import { Component, Injector, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { LoginFormInterface } from '../interfaces/login-form.interface';
 import { AuthService } from './auth.service';
-import { LoginInterface } from '../interfaces/login-interface';
+import { LoginInterface } from '../interfaces/login.interface';
 import { Router } from '@angular/router';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-auth',
@@ -17,7 +17,7 @@ export class AuthComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private _snackBar: MatSnackBar,
+    private toastr: ToastrService,
   ) {}
 
   ngOnInit() {
@@ -39,7 +39,7 @@ export class AuthComponent implements OnInit {
     this.authService.login(data).subscribe((response) => {
       localStorage.setItem('token', response.tokenValue);
       localStorage.setItem('login', response.claims.login);
-      this._snackBar.open('Zalogowano pomyślnie', 'Zamknij');
+      this.toastr.success('Zalogowano pomyślnie!');
       this.router.navigate(['/blog']);
     });
   }
