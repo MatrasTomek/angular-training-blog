@@ -11,18 +11,16 @@ export class AuthService {
   private userLogin$ = new BehaviorSubject<string | null>(null);
   private isLogged$ = new BehaviorSubject<boolean>(false);
 
-  url: string = 'http://localhost:8080/api/';
+  url: string = 'http://localhost:8080/api/authentication';
   constructor(private http: HttpClient) {}
 
   login(data: LoginInterface): Observable<ResponseAuthInterface> {
-    return this.http
-      .post<ResponseAuthInterface>(`${this.url}authentication`, data)
-      .pipe(
-        tap((response) => {
-          this.userLogin$.next(response.claims.login);
-          this.isLogged$.next(true);
-        }),
-      );
+    return this.http.post<ResponseAuthInterface>(`${this.url}`, data).pipe(
+      tap((response) => {
+        this.userLogin$.next(response.claims.login);
+        this.isLogged$.next(true);
+      }),
+    );
   }
 
   get UserInfo(): string | null {

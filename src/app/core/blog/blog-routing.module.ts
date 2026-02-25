@@ -4,11 +4,17 @@ import { BlogPageComponent } from './components/blog-page/blog-page.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { InfoComponent } from './components/info/info.component';
 import { AuthGuard } from 'src/app/auth-guard';
+// import { OnePostComponent } from './components/one-post/one-post.component';
 
 const routes: Routes = [
   { path: 'blog-page', component: BlogPageComponent, canActivate: [AuthGuard] },
   { path: 'contact', component: ContactComponent, canActivate: [AuthGuard] },
   { path: 'info', component: InfoComponent, canActivate: [AuthGuard] },
+  // {
+  //   path: 'one-post/:id',
+  //   component: OnePostComponent,
+  //   canActivate: [AuthGuard],
+  // },
 ];
 
 @NgModule({

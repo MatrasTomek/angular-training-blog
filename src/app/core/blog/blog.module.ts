@@ -14,6 +14,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
+import { MatIconModule } from '@angular/material/icon';
+import { OnePostComponent } from './components/one-post/one-post.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,7 @@ import { MatTableModule } from '@angular/material/table';
     InfoComponent,
     BlogPageComponent,
     ContactComponent,
+    OnePostComponent,
   ],
   imports: [
     CommonModule,
@@ -37,6 +40,7 @@ import { MatTableModule } from '@angular/material/table';
     MatPaginatorModule,
     MatSortModule,
     MatTableModule,
+    MatIconModule,
   ],
   exports: [BlogComponent, InfoComponent, BlogPageComponent, ContactComponent],
 })
