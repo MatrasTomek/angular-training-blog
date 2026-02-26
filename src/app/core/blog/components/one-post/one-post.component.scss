@@ -1,0 +1,16 @@
+.card-wrapper {
+  width: 70%;
+  margin: 2rem auto;
+}
+
+.comments-wrapper {
+  width: 90%;
+  margin: 2rem auto;
+
+  .comment-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem;
+  }
+}

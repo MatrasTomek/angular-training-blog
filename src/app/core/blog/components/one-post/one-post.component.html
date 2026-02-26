@@ -1,0 +1,31 @@
+<div class="card-wrapper">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title
+        >Data publikacji:{{
+          post.createdDateTime | date: "dd-MM-yyyy"
+        }}</mat-card-title
+      >
+      <mat-card-subtitle>Autor: {{ post.author }}</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <p>Post: {{ post.text }}</p>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="comments-wrapper">
+    <mat-card-content>
+      <h4>Komentarze</h4>
+      <mat-list>
+        <mat-list-item *ngFor="let comment of post.comments">
+          <div class="comment-item">
+            <p>{{ comment.text }}</p>
+            <p>Autor: {{ comment.author }}</p>
+            <p>{{ comment.createdDateTime | date: "dd-MM-yyyy" }}</p>
+          </div>
+        </mat-list-item>
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
+</div>

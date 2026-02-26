@@ -16,6 +16,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { OnePostComponent } from './components/one-post/one-post.component';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { OnePostComponent } from './components/one-post/one-post.component';
     MatSortModule,
     MatTableModule,
     MatIconModule,
+    MatListModule,
   ],
   exports: [BlogComponent, InfoComponent, BlogPageComponent, ContactComponent],
 })

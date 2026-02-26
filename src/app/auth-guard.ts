@@ -7,7 +7,7 @@ import {
 } from '@angular/router';
 import { map, Observable } from 'rxjs';
 import { AuthService } from './core/auth/auth.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +16,7 @@ export class AuthGuard implements CanActivate {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private _snackBar: MatSnackBar,
+    private toastr: ToastrService,
   ) {}
 
   canActivate(
@@ -26,7 +26,7 @@ export class AuthGuard implements CanActivate {
     return this.authService.IsLogged.pipe(
       map((isLogged) => {
         if (!isLogged) {
-          this._snackBar.open('Najpierw się zaloguj!', 'Zamknij');
+          this.toastr.error('Musisz być zalogowany, aby zobaczyć tę stronę!');
           this.router.navigate(['/login']);
           return false;
         } else {
