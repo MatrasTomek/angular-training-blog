@@ -1,0 +1,21 @@
+<h2 mat-dialog-title>Add comment</h2>
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="dialogForm">
+    <mat-form-field appearance="fill">
+      <mat-label>Komentarz: </mat-label>
+      <input matInput formControlName="comment" placeholder="Wpisz komentarz" />
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close color="secondary">Cancel</button>
+  <button
+    mat-button
+    [mat-dialog-close]="true"
+    (click)="addComment()"
+    cdkFocusInitial
+    color="primary"
+  >
+    Zapisz
+  </button>
+</mat-dialog-actions>

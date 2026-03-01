@@ -6,6 +6,7 @@ import { PostInterface } from '../interfaces/post.interface';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-blog',
@@ -16,6 +17,7 @@ export class BlogComponent implements OnInit {
   constructor(
     private blogService: BlogService,
     private router: Router,
+    private toastr: ToastrService,
   ) {}
 
   displayedColumns: string[] = [
@@ -50,14 +52,13 @@ export class BlogComponent implements OnInit {
   applyFilter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
-
-    // if (this.dataSource.paginator) {
-    //   this.dataSource.paginator.firstPage();
-    // }
   }
 
   deletePost(id: number): void {
-    console.log(id);
+    this.blogService.deletePost(id.toString()).subscribe(() => {
+      this.toastr.success('Post został usunięty!');
+      this.getAllPost();
+    });
   }
 
   goToPost(id: number): void {

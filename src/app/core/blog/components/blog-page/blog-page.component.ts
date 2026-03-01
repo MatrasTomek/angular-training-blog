@@ -37,19 +37,17 @@ export class BlogPageComponent implements OnInit {
     if (this.blogForm.invalid) {
       return;
     }
-    // TM: Add one day to current date when publicationDate not provided
-    const publicationDate = this.blogForm.value.publicationDate
-      ? this.blogForm.value.publicationDate
-      : new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString();
 
     const data: CreatePostInterface = {
-      text: this.blogForm.value.text ?? '',
+      text: this.blogForm.value.text as string,
       scope: 'PUBLIC',
-      publicationDate: publicationDate,
+      publicationDate: this.blogForm.value.publicationDate ?? '',
     };
 
     this.blogService.addPost(data).subscribe(
       (res) => {
+        console.log(res);
+
         this.toastr.success('Post został dodany!');
         this.blogForm.reset();
         this.router.navigate(['/blog']);

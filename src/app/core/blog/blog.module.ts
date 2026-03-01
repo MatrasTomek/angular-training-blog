@@ -17,6 +17,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { OnePostComponent } from './components/one-post/one-post.component';
 import { MatListModule } from '@angular/material/list';
+import { MatDialogModule } from '@angular/material/dialog';
+import { DialogComponent } from './components/dialog/dialog.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,7 @@ import { MatListModule } from '@angular/material/list';
     BlogPageComponent,
     ContactComponent,
     OnePostComponent,
+    DialogComponent,
   ],
   imports: [
     CommonModule,
@@ -43,6 +46,7 @@ import { MatListModule } from '@angular/material/list';
     MatTableModule,
     MatIconModule,
     MatListModule,
+    MatDialogModule,
   ],
   exports: [BlogComponent, InfoComponent, BlogPageComponent, ContactComponent],
 })

@@ -1,8 +1,8 @@
 export interface CommentInterface {
   id: number;
   text: string;
-  createdDateTime: string;
-  author: string;
+  createdDateTime?: string;
+  author?: string;
 }
 
 export interface ResPostInterface {

@@ -3,7 +3,7 @@
     <mat-card-header>
       <mat-card-title
         >Data publikacji:{{
-          post.createdDateTime | date: "dd-MM-yyyy"
+          (post.createdDateTime | date: "dd-MM-yyyy") ?? "Brak daty"
         }}</mat-card-title
       >
       <mat-card-subtitle>Autor: {{ post.author }}</mat-card-subtitle>
@@ -13,16 +13,24 @@
       <p>Post: {{ post.text }}</p>
     </mat-card-content>
   </mat-card>
-
+  <div class="comment-btn">
+    <button mat-raised-button color="primary" (click)="openDialog()">
+      Add comment
+    </button>
+  </div>
   <mat-card class="comments-wrapper">
     <mat-card-content>
       <h4>Komentarze</h4>
       <mat-list>
         <mat-list-item *ngFor="let comment of post.comments">
-          <div class="comment-item">
-            <p>{{ comment.text }}</p>
-            <p>Autor: {{ comment.author }}</p>
-            <p>{{ comment.createdDateTime | date: "dd-MM-yyyy" }}</p>
+          <div class="item-comm">
+            <span> Tekst: {{ comment.text }} </span>
+            <span> Autor: {{ comment.author }} </span>
+            <span>
+              {{
+                (comment?.createdDateTime | date: "dd-MM-yyyy") ?? "Brak daty"
+              }}
+            </span>
           </div>
         </mat-list-item>
       </mat-list>
