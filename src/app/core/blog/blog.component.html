@@ -12,7 +12,9 @@
 
     <ng-container matColumnDef="text">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Text</th>
-      <td mat-cell *matCellDef="let row">{{ row.text | tekstShort: 5 }}</td>
+      <td mat-cell *matCellDef="let row" appAddColor>
+        {{ row.text | tekstShort: 5 }}
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="createdDateTime">

@@ -21,6 +21,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { DialogComponent } from './components/dialog/dialog.component';
 import { EditPostComponent } from './components/edit-post/edit-post.component';
 import { TekstShortPipe } from './pipe/tekst-short.pipe';
+import { AddColorDirective } from './directive/add-color.directive';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { TekstShortPipe } from './pipe/tekst-short.pipe';
     DialogComponent,
     EditPostComponent,
     TekstShortPipe,
+    AddColorDirective,
   ],
   imports: [
     CommonModule,
@@ -58,6 +60,7 @@ import { TekstShortPipe } from './pipe/tekst-short.pipe';
     BlogPageComponent,
     ContactComponent,
     TekstShortPipe,
+    AddColorDirective,
   ],
 })
 export class BlogModule {}
