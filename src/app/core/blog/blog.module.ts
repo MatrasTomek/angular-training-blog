@@ -20,6 +20,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DialogComponent } from './components/dialog/dialog.component';
 import { EditPostComponent } from './components/edit-post/edit-post.component';
+import { TekstShortPipe } from './pipe/tekst-short.pipe';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { EditPostComponent } from './components/edit-post/edit-post.component';
     OnePostComponent,
     DialogComponent,
     EditPostComponent,
+    TekstShortPipe,
   ],
   imports: [
     CommonModule,
@@ -50,6 +52,12 @@ import { EditPostComponent } from './components/edit-post/edit-post.component';
     MatListModule,
     MatDialogModule,
   ],
-  exports: [BlogComponent, InfoComponent, BlogPageComponent, ContactComponent],
+  exports: [
+    BlogComponent,
+    InfoComponent,
+    BlogPageComponent,
+    ContactComponent,
+    TekstShortPipe,
+  ],
 })
 export class BlogModule {}
