@@ -17,4 +17,8 @@ export class HeaderComponent {
     this.authService.logOut();
     this.router.navigate(['/login']);
   }
+
+  goToBlog(): void {
+    this.router.navigate(['/blog']);
+  }
 }

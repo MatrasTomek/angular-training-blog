@@ -27,6 +27,21 @@
       <td mat-cell *matCellDef="let row">{{ row.author }}</td>
     </ng-container>
 
+    <ng-container matColumnDef="edit">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+      <td mat-cell *matCellDef="let row">
+        <button
+          mat-button
+          color="primary"
+          (click)="editPost(row.id); $event.stopPropagation()"
+        >
+          <mat-icon aria-hidden="false" aria-label="Example home icon"
+            >edit</mat-icon
+          >
+        </button>
+      </td>
+    </ng-container>
+
     <ng-container matColumnDef="delete">
       <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
       <td mat-cell *matCellDef="let row">

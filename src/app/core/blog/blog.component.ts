@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { BlogService } from './blog.service';
 import { GetPostInterface } from '../interfaces/get-post.interface';
 import { MatTableDataSource } from '@angular/material/table';
@@ -7,6 +7,12 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import {
+  MAT_DIALOG_DATA,
+  MatDialog,
+  MatDialogRef,
+} from '@angular/material/dialog';
+import { EditPostComponent } from './components/edit-post/edit-post.component';
 
 @Component({
   selector: 'app-blog',
@@ -18,6 +24,8 @@ export class BlogComponent implements OnInit {
     private blogService: BlogService,
     private router: Router,
     private toastr: ToastrService,
+    public dialog: MatDialog,
+    // @Inject(MAT_DIALOG_DATA) public data: any,
   ) {}
 
   displayedColumns: string[] = [
@@ -25,6 +33,7 @@ export class BlogComponent implements OnInit {
     'text',
     'createdDateTime',
     'author',
+    'edit',
     'delete',
   ];
   dataSource!: MatTableDataSource<PostInterface>;
@@ -63,5 +72,17 @@ export class BlogComponent implements OnInit {
 
   goToPost(id: number): void {
     this.router.navigate([`/one-post/${id}`]);
+  }
+
+  editPost(id: number): void {
+    const dialogRef = this.dialog.open(EditPostComponent, {
+      data: { postId: id },
+      height: '480px',
+      width: '720px',
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.getAllPost();
+    });
   }
 }

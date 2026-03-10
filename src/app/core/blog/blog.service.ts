@@ -5,6 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { GetPostInterface } from '../interfaces/get-post.interface';
 import { PostInterface, ResPostInterface } from '../interfaces/post.interface';
 import { CreateCommentInterface } from '../interfaces/dialog-form.interface';
+import { EditBlogInterface } from '../interfaces/edit-blog.nterface';
 
 @Injectable({
   providedIn: 'root',
@@ -42,5 +43,11 @@ export class BlogService {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.delete<any>(`${this.url}/${id}`, { headers });
+  }
+
+  updatePost(data: EditBlogInterface, id: string): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.put<any>(`${this.url}/${id}`, data, { headers });
   }
 }

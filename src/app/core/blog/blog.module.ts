@@ -19,6 +19,7 @@ import { OnePostComponent } from './components/one-post/one-post.component';
 import { MatListModule } from '@angular/material/list';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DialogComponent } from './components/dialog/dialog.component';
+import { EditPostComponent } from './components/edit-post/edit-post.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { DialogComponent } from './components/dialog/dialog.component';
     ContactComponent,
     OnePostComponent,
     DialogComponent,
+    EditPostComponent,
   ],
   imports: [
     CommonModule,
