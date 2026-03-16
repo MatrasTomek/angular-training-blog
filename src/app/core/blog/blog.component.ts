@@ -13,6 +13,7 @@ import {
   MatDialogRef,
 } from '@angular/material/dialog';
 import { EditPostComponent } from './components/edit-post/edit-post.component';
+import { TablePaginatorInterface } from '../interfaces/table-paginator.interface';
 
 @Component({
   selector: 'app-blog',
@@ -21,7 +22,7 @@ import { EditPostComponent } from './components/edit-post/edit-post.component';
 })
 export class BlogComponent implements OnInit {
   constructor(
-    private blogService: BlogService,
+    public blogService: BlogService,
     private router: Router,
     private toastr: ToastrService,
     public dialog: MatDialog,
@@ -38,6 +39,8 @@ export class BlogComponent implements OnInit {
   ];
   dataSource!: MatTableDataSource<PostInterface>;
 
+  searchTerm: string = '';
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -46,12 +49,7 @@ export class BlogComponent implements OnInit {
   }
 
   getAllPost(): void {
-    const data: GetPostInterface = {
-      page: '0',
-      size: '1000',
-    };
-
-    this.blogService.getAllPosts(data).subscribe((res) => {
+    this.blogService.getAllPosts(this.searchTerm).subscribe((res) => {
       this.dataSource = new MatTableDataSource(res.content);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
@@ -59,8 +57,11 @@ export class BlogComponent implements OnInit {
   }
 
   applyFilter(event: Event): void {
+    this.setInitTableValues();
     const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.searchTerm = filterValue.trim().toLowerCase();
+
+    this.getAllPost();
   }
 
   deletePost(id: number): void {
@@ -84,5 +85,17 @@ export class BlogComponent implements OnInit {
     dialogRef.afterClosed().subscribe(() => {
       this.getAllPost();
     });
+  }
+
+  paginatorAction(event: TablePaginatorInterface): void {
+    this.blogService.pageIndex = event.pageIndex;
+    this.blogService.pageSize = event.pageSize;
+    this.getAllPost();
+  }
+
+  private setInitTableValues(): void {
+    this.blogService.pageIndex = this.blogService.initPageIndex;
+    this.blogService.pageSize = this.blogService.initPageSize;
+    this.blogService.tableLength = this.blogService.initTableLength;
   }
 }

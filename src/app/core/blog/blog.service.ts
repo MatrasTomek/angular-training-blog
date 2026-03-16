@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CreatePostInterface } from '../interfaces/create-post.interface';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { GetPostInterface } from '../interfaces/get-post.interface';
 import { PostInterface, ResPostInterface } from '../interfaces/post.interface';
@@ -11,6 +11,14 @@ import { EditBlogInterface } from '../interfaces/edit-blog.nterface';
   providedIn: 'root',
 })
 export class BlogService {
+  initPageIndex = 0;
+  initPageSize = 5;
+  initTableLength = 0;
+  tableLength!: number;
+
+  pageIndex = this.initPageIndex;
+  pageSize = this.initPageSize;
+
   url = 'http://localhost:8080/api/posts';
   urlComment = 'http://localhost:8080/api/comments';
   urlDelete = 'http://localhost:8080/api/posts';
@@ -23,10 +31,24 @@ export class BlogService {
     return this.http.post<any>(this.url, data, { headers });
   }
 
-  getAllPosts(data: GetPostInterface): Observable<ResPostInterface> {
-    return this.http.get<ResPostInterface>(
-      `${this.url}?page=${data.page}&size=${data.size}`,
-    );
+  // getAllPosts(data: GetPostInterface): Observable<ResPostInterface> {
+  //   return this.http.get<ResPostInterface>(
+  //     `${this.url}?page=${data.page}&size=${data.size}`,
+  //   );
+  // }
+
+  getAllPosts(query?: string): Observable<ResPostInterface> {
+    console.log(this.pageIndex, this.pageSize, query);
+
+    return this.http
+      .get<ResPostInterface>(
+        `${this.url}?page=${this.pageIndex}&size=${this.pageSize}&q=${query}`,
+      )
+      .pipe(
+        tap((data) => {
+          this.tableLength = data.totalElements;
+        }),
+      );
   }
 
   getPostById(id: string): Observable<PostInterface> {
